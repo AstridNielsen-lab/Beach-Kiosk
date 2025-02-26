@@ -249,7 +249,7 @@ export function TableChat({ table, onUpdateChat }: TableChatProps) {
     value={message}
     onChange={(e) => setMessage(e.target.value)}
     className="flex-1 p-2 border rounded-lg max-w-full"
-    placeholder="Digite sua mensagem..."
+    placeholder="Digite..."
   />
          <button
     type="submit"
