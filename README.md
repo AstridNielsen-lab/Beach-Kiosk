@@ -1,6 +1,6 @@
 # **Quiosque Manager - Sistema de Gestão para Quiosques de Praia**  
 
-**Desenvolvido por:** Marcelo Oliveira e Julio Campos Machado - Like Look Solutions  
+**Desenvolvido por:** Julio Campos Machado - Like Look Solutions  
 📞 **WhatsApp:** +55 11 99294-6628  
 🌐 **Site:** [https://likelook.wixsite.com/solutions](https://likelook.wixsite.com/solutions)  
 
