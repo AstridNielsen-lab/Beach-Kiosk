@@ -251,11 +251,11 @@ export function TableChat({ table, onUpdateChat }: TableChatProps) {
     className="flex-1 p-2 border rounded-lg max-w-full"
     placeholder="Digite sua mensagem..."
   />
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-2"
-          >
-            <Send size={20} />
+         <button
+    type="submit"
+    className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition"
+  >
+    <Send size={20} />
           </button>
         </div>
       </form>
