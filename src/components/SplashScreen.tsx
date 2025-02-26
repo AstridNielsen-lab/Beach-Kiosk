@@ -40,7 +40,7 @@ export function SplashScreen({ onComplete, isRest = false }: SplashScreenProps) 
           className="mx-auto mb-4 animate-[bounce_2s_ease-in-out_infinite]" 
         />
         <AnimatedText
-          text={isRest ? "Clique para voltar" : "Beach Kiosk"}
+          text={isRest ? "Beach Kiosk" : "Beach Kiosk"}
           className="text-4xl font-bold"
         />
       </div>
