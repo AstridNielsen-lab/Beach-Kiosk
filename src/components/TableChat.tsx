@@ -249,7 +249,7 @@ export function TableChat({ table, onUpdateChat }: TableChatProps) {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Duvidas..."
-          className="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         />
         <button
           type="submit"
