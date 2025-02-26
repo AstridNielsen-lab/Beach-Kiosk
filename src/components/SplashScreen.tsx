@@ -39,14 +39,15 @@ export function SplashScreen({ onComplete, isRest = false }: SplashScreenProps) 
           size={64} 
           className="mx-auto mb-4 animate-[bounce_2s_ease-in-out_infinite]" 
         />
-        <AnimatedText 
-  text={[
-    "Beach Kiosk PDV",
-    <br key="break" />,
-    "Beach Kiosk"
-  ]}
-  className="text-4xl font-bold" 
-/>
+       <AnimatedText
+          text={isRest ? "Beach Kiosk PDV" : "Beach Kiosk"}
+          className="text-4xl font-bold"
+        />
+        </div>
+          <AnimatedText
+          text={isRest ? "Beach Kiosk PDV" : "Beach Kiosk"}
+          className="text-4xl font-bold"
+        />
 
         
       </div>
