@@ -43,6 +43,12 @@ export function SplashScreen({ onComplete, isRest = false }: SplashScreenProps) 
           text={isRest ? "Beach Kiosk PDV" : "Beach Kiosk"}
           className="text-4xl font-bold"
         />
+          <AnimatedText
+          text={isRest ? "Beach Kiosk PDV" : "Beach Kiosk"}
+          className="text-4xl font-bold"
+        />
+
+        
       </div>
     </div>
   );
