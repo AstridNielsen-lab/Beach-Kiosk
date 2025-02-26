@@ -6,7 +6,7 @@ export const products = [
     description: 'Tradicional coquetel brasileiro com limão e cachaça Velho Barreiro',
     price: 25.00,
     category: 'destilados',
-    image: 'https://images.unsplash.com/photo-1575037614876-c38a4d44f5b8?auto=format&fit=crop&q=80&w=500',
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Beach-Kiosk/refs/heads/index/src/capirinha%20sol.jpg?auto=format&fit=crop&q=80&w=500',
   },
   {
     id: 'drink-2',
@@ -14,7 +14,7 @@ export const products = [
     description: 'Dose de Johnnie Walker Red Label com gelo',
     price: 28.00,
     category: 'destilados',
-    image: 'https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&q=80&w=500',
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Beach-Kiosk/refs/heads/index/src/red.jpeg?auto=format&fit=crop&q=80&w=500',
   },
   {
     id: 'drink-3',
@@ -22,7 +22,7 @@ export const products = [
     description: 'Dose de Vodka Absolut com energético ou suco',
     price: 30.00,
     category: 'destilados',
-    image: 'https://images.unsplash.com/photo-1608885898957-a1cda55a3ee7?auto=format&fit=crop&q=80&w=500',
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Beach-Kiosk/refs/heads/index/src/absolut.jpeg?auto=format&fit=crop&q=80&w=500',
   },
 
   // Bebidas Alcoólicas - Cervejas
@@ -32,7 +32,7 @@ export const products = [
     description: 'Cerveja premium 330ml, servida gelada',
     price: 14.00,
     category: 'cervejas',
-    image: 'https://images.unsplash.com/photo-1618885472179-5e474019f2a9?auto=format&fit=crop&q=80&w=500',
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Beach-Kiosk/refs/heads/index/src/heineken-1.jpg?auto=format&fit=crop&q=80&w=500',
   },
   {
     id: 'beer-2',
@@ -40,7 +40,7 @@ export const products = [
     description: 'Cerveja premium 330ml, servida gelada',
     price: 14.00,
     category: 'cervejas',
-    image: 'https://images.unsplash.com/photo-1613766259482-f2bb776c7685?auto=format&fit=crop&q=80&w=500',
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Beach-Kiosk/refs/heads/index/src/cerveja-stella.jpg?auto=format&fit=crop&q=80&w=500',
   },
 
   // Vinhos
@@ -60,7 +60,7 @@ export const products = [
     description: 'Garrafa 500ml (com ou sem gás)',
     price: 6.00,
     category: 'nao_alcoolicas',
-    image: 'https://images.unsplash.com/photo-1560787313-5dff3307e257?auto=format&fit=crop&q=80&w=500',
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Beach-Kiosk/refs/heads/index/src/%C3%A1gua-mineral.jpg?auto=format&fit=crop&q=80&w=500',
   },
   {
     id: 'soft-2',
@@ -86,7 +86,7 @@ export const products = [
     description: 'Robalo grelhado com arroz, legumes e farofa',
     price: 89.00,
     category: 'pratos_principais',
-    image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=500',
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Beach-Kiosk/refs/heads/index/src/peixe-grelhado.jpg?auto=format&fit=crop&q=80&w=500',
   },
   {
     id: 'food-2',
@@ -94,7 +94,7 @@ export const products = [
     description: 'Tradicional moqueca capixaba com arroz e pirão',
     price: 120.00,
     category: 'pratos_principais',
-    image: 'https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?auto=format&fit=crop&q=80&w=500',
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Beach-Kiosk/refs/heads/index/src/moqueca_vegana.jpg?auto=format&fit=crop&q=80&w=500',
   },
 
   // Porções
@@ -148,7 +148,7 @@ export const products = [
     description: 'Molho caseiro ideal para peixes e frutos do mar',
     price: 8.00,
     category: 'molhos',
-    image: 'https://images.unsplash.com/photo-1588767768106-1b20e51d9d68?auto=format&fit=crop&q=80&w=500',
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Beach-Kiosk/refs/heads/index/src/tartaro.jpg?auto=format&fit=crop&q=80&w=500',
   },
   {
     id: 'sauce-2',
@@ -156,6 +156,6 @@ export const products = [
     description: 'Molho de pimenta caseiro',
     price: 5.00,
     category: 'molhos',
-    image: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&q=80&w=500',
+    image: 'https://raw.githubusercontent.com/AstridNielsen-lab/Beach-Kiosk/refs/heads/index/src/hot-tomato.jpg?auto=format&fit=crop&q=80&w=500',
   },
 ] as const;
