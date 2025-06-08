@@ -41,6 +41,9 @@ O **Quiosque Manager** está disponível para **locação mensal por apenas R$ 6
 ✔ **Evolução do aplicativo com novas funcionalidades**.  
 ✔ **Suporte 24 horas** para garantir o melhor funcionamento do sistema.  
 
+## **🌐 Demo Online**  
+🚀 **Acesse o sistema:** [https://beach-kiosk.vercel.app/](https://beach-kiosk.vercel.app/)  
+
 ## **📞 Contato para Adquirir**  
 Entre em contato para mais informações e demonstração:  
 📱 **WhatsApp:** +55 11 99294-6628  
