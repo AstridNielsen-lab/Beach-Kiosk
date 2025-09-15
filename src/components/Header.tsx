@@ -1,4 +1,4 @@
-import { ShoppingCart, UmbrellaIcon, LogOut, Maximize2, Minimize2, Coffee } from 'lucide-react';
+import { ShoppingCart, UmbrellaIcon, LogOut, Maximize2, Minimize2, Coffee, User as UserIcon } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { AnimatedText } from './AnimatedText';
 import type { User } from '../types';
@@ -7,12 +7,15 @@ interface HeaderProps {
   cartItemCount: number;
   onCartClick: () => void;
   onAdminClick: () => void;
+  onCustomerLoginClick: () => void;
   currentUser: User | null;
+  currentCustomer: User | null;
   onLogout: () => void;
+  onCustomerLogout: () => void;
   onRestClick: () => void;
 }
 
-export function Header({ cartItemCount, onCartClick, onAdminClick, currentUser, onLogout, onRestClick }: HeaderProps) {
+export function Header({ cartItemCount, onCartClick, onAdminClick, onCustomerLoginClick, currentUser, currentCustomer, onLogout, onCustomerLogout, onRestClick }: HeaderProps) {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
@@ -43,6 +46,37 @@ export function Header({ cartItemCount, onCartClick, onAdminClick, currentUser, 
           />
         </div>
         <div className="flex items-center gap-4">
+          {/* Customer Login/Profile */}
+          {currentCustomer ? (
+            <div className="flex items-center gap-2 px-3 py-2 bg-green-600 rounded-lg">
+              {currentCustomer.picture && (
+                <img
+                  src={currentCustomer.picture}
+                  alt={currentCustomer.name}
+                  className="w-6 h-6 rounded-full border border-white"
+                />
+              )}
+              <span className="text-sm font-medium">
+                Olá, {currentCustomer.name.split(' ')[0]}
+              </span>
+              <button
+                onClick={onCustomerLogout}
+                className="p-1 hover:bg-green-700 rounded-full transition-colors"
+                title="Sair"
+              >
+                <LogOut size={14} />
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={onCustomerLoginClick}
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors text-sm font-medium"
+            >
+              <UserIcon size={18} />
+              Fazer Login
+            </button>
+          )}
+
           <button
             onClick={onRestClick}
             className="p-2 hover:bg-blue-600 rounded-full transition-colors"

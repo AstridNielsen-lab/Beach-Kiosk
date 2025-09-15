@@ -4,6 +4,7 @@ import { ProductCard } from './components/ProductCard';
 import { Cart } from './components/Cart';
 import { AdminPanel } from './components/AdminPanel';
 import { AdminAuth } from './components/AdminAuth';
+import { CustomerAuth } from './components/CustomerAuth';
 import { Footer } from './components/Footer';
 import { SplashScreen } from './components/SplashScreen';
 import { GoogleAuthCallback } from './components/GoogleAuthCallback';
@@ -16,6 +17,7 @@ const LOCAL_STORAGE_KEYS = {
   ORDERS: 'beachKiosk_orders',
   BACKUP_TIME: 'beachKiosk_lastBackup',
   USER: 'beachKioskUser',
+  CUSTOMER: 'beachKioskCustomer',
 };
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
   const [showCart, setShowCart] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
   const [showAdminAuth, setShowAdminAuth] = useState(false);
+  const [showCustomerAuth, setShowCustomerAuth] = useState(false);
   const [orders, setOrders] = useState<Order[]>(() => {
     const savedOrders = localStorage.getItem(LOCAL_STORAGE_KEYS.ORDERS);
     return savedOrders ? JSON.parse(savedOrders) : [];
@@ -45,6 +48,20 @@ function App() {
       // Sessões Google duram 24 horas, sessões locais 8 horas
       const maxSessionAge = user.authType === 'google' ? 24 * 60 * 60 * 1000 : 8 * 60 * 60 * 1000;
       return sessionAge < maxSessionAge ? user : null;
+    }
+    return null;
+  });
+  const [currentCustomer, setCurrentCustomer] = useState<User | null>(() => {
+    const savedCustomer = localStorage.getItem(LOCAL_STORAGE_KEYS.CUSTOMER);
+    if (savedCustomer) {
+      const customer = JSON.parse(savedCustomer, (key, value) => {
+        if (key === 'timestamp') return new Date(value);
+        return value;
+      });
+      const sessionAge = Date.now() - new Date(customer.timestamp).getTime();
+      // Sessões de cliente duram 30 dias
+      const maxSessionAge = 30 * 24 * 60 * 60 * 1000;
+      return sessionAge < maxSessionAge ? customer : null;
     }
     return null;
   });
@@ -284,6 +301,20 @@ function App() {
     }
   };
 
+  const handleCustomerLoginClick = () => {
+    setShowCustomerAuth(true);
+  };
+
+  const handleCustomerAuthSuccess = (customer: User) => {
+    setCurrentCustomer(customer);
+    setShowCustomerAuth(false);
+  };
+
+  const handleCustomerLogout = () => {
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.CUSTOMER);
+    setCurrentCustomer(null);
+  };
+
   if (isGoogleCallback) {
     return <GoogleAuthCallback onComplete={() => setIsGoogleCallback(false)} />;
   }
@@ -313,8 +344,11 @@ function App() {
         cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
         onCartClick={() => setShowCart(true)}
         onAdminClick={handleAdminClick}
+        onCustomerLoginClick={handleCustomerLoginClick}
         currentUser={currentUser}
+        currentCustomer={currentCustomer}
         onLogout={handleLogout}
+        onCustomerLogout={handleCustomerLogout}
         onRestClick={() => setIsResting(true)}
       />
 
@@ -366,6 +400,13 @@ function App() {
         <AdminAuth
           onSuccess={handleAdminAuthSuccess}
           onClose={() => setShowAdminAuth(false)}
+        />
+      )}
+
+      {showCustomerAuth && (
+        <CustomerAuth
+          onSuccess={handleCustomerAuthSuccess}
+          onClose={() => setShowCustomerAuth(false)}
         />
       )}
 

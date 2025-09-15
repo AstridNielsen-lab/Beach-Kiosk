@@ -47,7 +47,7 @@ export interface Order {
   waiter: string;
 }
 
-export type UserRole = 'admin' | 'waiter' | 'cashier';
+export type UserRole = 'admin' | 'waiter' | 'cashier' | 'customer';
 
 export interface User {
   role: UserRole;
