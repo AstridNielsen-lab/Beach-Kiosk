@@ -6,6 +6,7 @@ import { AdminPanel } from './components/AdminPanel';
 import { AdminAuth } from './components/AdminAuth';
 import { Footer } from './components/Footer';
 import { SplashScreen } from './components/SplashScreen';
+import { GoogleAuthCallback } from './components/GoogleAuthCallback';
 import { products } from './data/products';
 import type { CartItem, Order, Product, User, Table } from './types';
 
@@ -20,6 +21,9 @@ const LOCAL_STORAGE_KEYS = {
 function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [isResting, setIsResting] = useState(false);
+  const [isGoogleCallback, setIsGoogleCallback] = useState(() => {
+    return window.location.pathname === '/signin-google' || window.location.search.includes('code=');
+  });
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [showCart, setShowCart] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
@@ -33,9 +37,14 @@ function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(() => {
     const savedUser = localStorage.getItem(LOCAL_STORAGE_KEYS.USER);
     if (savedUser) {
-      const user = JSON.parse(savedUser);
+      const user = JSON.parse(savedUser, (key, value) => {
+        if (key === 'timestamp') return new Date(value);
+        return value;
+      });
       const sessionAge = Date.now() - new Date(user.timestamp).getTime();
-      return sessionAge < 8 * 60 * 60 * 1000 ? user : null;
+      // Sessões Google duram 24 horas, sessões locais 8 horas
+      const maxSessionAge = user.authType === 'google' ? 24 * 60 * 60 * 1000 : 8 * 60 * 60 * 1000;
+      return sessionAge < maxSessionAge ? user : null;
     }
     return null;
   });
@@ -99,10 +108,14 @@ function App() {
     // Check for existing user session
     const savedUser = localStorage.getItem(LOCAL_STORAGE_KEYS.USER);
     if (savedUser) {
-      const user = JSON.parse(savedUser);
-      // Check if the session is less than 8 hours old
+      const user = JSON.parse(savedUser, (key, value) => {
+        if (key === 'timestamp') return new Date(value);
+        return value;
+      });
       const sessionAge = Date.now() - new Date(user.timestamp).getTime();
-      if (sessionAge < 8 * 60 * 60 * 1000) {
+      const maxSessionAge = user.authType === 'google' ? 24 * 60 * 60 * 1000 : 8 * 60 * 60 * 1000;
+      
+      if (sessionAge < maxSessionAge) {
         setCurrentUser(user);
         setShowAdmin(true);
       } else {
@@ -270,6 +283,10 @@ function App() {
       setCartItems([]);
     }
   };
+
+  if (isGoogleCallback) {
+    return <GoogleAuthCallback onComplete={() => setIsGoogleCallback(false)} />;
+  }
 
   if (showSplash) {
     return <SplashScreen onComplete={() => setShowSplash(false)} />;

@@ -53,6 +53,10 @@ export interface User {
   role: UserRole;
   name: string;
   timestamp: Date;
+  email?: string;
+  picture?: string;
+  googleId?: string;
+  authType?: 'local' | 'google';
 }
 
 export interface Voice {

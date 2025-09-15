@@ -59,8 +59,25 @@ export function Header({ cartItemCount, onCartClick, onAdminClick, currentUser, 
           </button>
           {currentUser && (
             <div className="flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-lg">
-              <span className="text-sm">
-                {currentUser.name} ({currentUser.role})
+              {currentUser.picture && (
+                <img
+                  src={currentUser.picture}
+                  alt={currentUser.name}
+                  className="w-8 h-8 rounded-full border-2 border-white"
+                />
+              )}
+              <div className="flex flex-col">
+                <span className="text-sm font-semibold">
+                  {currentUser.name}
+                </span>
+                {currentUser.email && (
+                  <span className="text-xs opacity-75">
+                    {currentUser.email}
+                  </span>
+                )}
+              </div>
+              <span className="text-xs bg-blue-700 px-2 py-1 rounded">
+                {currentUser.role}
               </span>
               <button
                 onClick={onLogout}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { KeyRound, X } from 'lucide-react';
+import GoogleAuth from './GoogleAuth';
 import type { UserRole, User } from '../types';
 
 interface AdminAuthProps {
@@ -18,6 +19,7 @@ export function AdminAuth({ onSuccess, onClose }: AdminAuthProps) {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
+  const [googleError, setGoogleError] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ export function AdminAuth({ onSuccess, onClose }: AdminAuthProps) {
         role: selectedRole,
         name,
         timestamp: new Date(),
+        authType: 'local',
       };
       
       // Save to localStorage
@@ -37,6 +40,14 @@ export function AdminAuth({ onSuccess, onClose }: AdminAuthProps) {
       setError(true);
       setPassword('');
     }
+  };
+
+  const handleGoogleSuccess = (user: User) => {
+    onSuccess(user);
+  };
+
+  const handleGoogleError = (errorMessage: string) => {
+    setGoogleError(errorMessage);
   };
 
   return (
@@ -52,6 +63,26 @@ export function AdminAuth({ onSuccess, onClose }: AdminAuthProps) {
           </button>
         </div>
         
+        {/* Google Sign In */}
+        <div className="mb-6">
+          <div className="text-center mb-4">
+            <p className="text-sm text-gray-600 mb-3">Entre com sua conta Google:</p>
+            <GoogleAuth onSuccess={handleGoogleSuccess} onError={handleGoogleError} />
+            {googleError && (
+              <p className="mt-2 text-sm text-red-600">{googleError}</p>
+            )}
+          </div>
+          
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-500">ou</span>
+            </div>
+          </div>
+        </div>
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
